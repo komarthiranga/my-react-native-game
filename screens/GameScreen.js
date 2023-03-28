@@ -3,6 +3,8 @@ import Title from '../components/ui/Title';
 import { useState, useEffect } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import Card from '../components/ui/Card';
+import { Ionicons } from '@expo/vector-icons';
 
 const generateRandomBetween = (min, max, exclude) => {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -47,17 +49,21 @@ const GameScreen = ({userNumber, onGameHandler}) => {
         <SafeAreaView style={styles.screen}>
             <Title title={"Oppnent's Guess"} /> 
             <NumberContainer>{currentGuess}</NumberContainer>
-            <SafeAreaView style={styles.actionsContainer}>
+            <Card>
                 <Text style={styles.text}> Higher or Lower ? </Text>
                 <SafeAreaView style={styles.buttonsContainer}>
                     <SafeAreaView style={styles.buttonContainer}>
-                         <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+                         <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                            <Ionicons name="md-add" size={24} color="white" />
+                         </PrimaryButton>
                     </SafeAreaView>
                     <SafeAreaView style={styles.buttonContainer}> 
-                         <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+                         <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                            <Ionicons name="md-remove" size={24} color="white" />
+                         </PrimaryButton>
                     </SafeAreaView>
                 </SafeAreaView> 
-            </SafeAreaView> 
+            </Card> 
         </SafeAreaView>
 
     )
@@ -81,7 +87,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 16
+        fontSize: 16,
+        padding: 15,
+        textAlign: 'center'
     }
 })
 

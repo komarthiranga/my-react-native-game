@@ -5,8 +5,16 @@ import { useState } from 'react';
 import GameScreen from './screens/GameScreen';
 import Colors from './constants/colors';
 import GameOver from './screens/GameOverScreen';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 export default function App() {
+
+ const [fontsLoading, error] =  useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  });
+
   const [ userNumber, setUserNumber ] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
 
@@ -28,7 +36,9 @@ export default function App() {
   if(gameIsOver && userNumber) {
     screen = <GameOver />
   }
-
+  if(!fontsLoading) {
+    return <AppLoading />
+  } else {
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
             <ImageBackground source={require('./assets/images/background.png')} 
@@ -41,6 +51,7 @@ export default function App() {
     </LinearGradient>
 
   );
+  }
 }
 
 const styles = StyleSheet.create({

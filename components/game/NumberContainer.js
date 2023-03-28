@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
         padding: 24,
         color: Colors.accent500,
         fontSize: 36,
-        fontWeight: 'bold'
+        // fontWeight: 'bold'
+        fontFamily: 'open-sans-bold'
     }
 
 })
